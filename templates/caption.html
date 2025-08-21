@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caption Generator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='caption.css') }}" />
+</head>
+<body>
+  <!-- Header Navigation Bar -->
+  <header class="header">
+    <h2 class="logo">✨ Caption Studio</h2>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('home') }}">🏠 Home</a></li>
+        <li><a href="{{ url_for('meme') }}">🔥 Meme</a></li>
+        <li><a href="{{ url_for('story') }}">📖 Short Story</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="content">
+    
+
+    <div class="container">
+      <!-- Inputs -->
+      <section class="inputs">
+        <h2>Inputs</h2>
+        <div class="upload-box">
+          <p>📤 Drop an image here or click to upload</p>
+          <input type="file" id="imageInput" accept="image/*" />
+        </div>
+
+        <label> Tone:
+          <select id="tone">
+            <option value="funny">Funny</option>
+            <option value="serious">Serious</option>
+            <option value="motivational">Motivational</option>
+            <option value="informative">Informative</option>
+            <option value="poetic">Poetic</option>
+            <option value="nostalgic">Nostalgic</option>
+            <option value="adventurous">Adventurous</option>
+            <option value="romantic">Romantic</option>
+            <option value="dramatic">Dramatic</option>
+            <option value="mysterious">Mysterious</option>
+            <option value="whimsical">Whimsical</option>
+            <option value="inspirational">Inspirational</option>
+            <option value="sarcastic">Sarcastic</option>
+            <option value="witty">Witty</option>
+            <option value="playful">Professional</option>
+          </select>
+        </label>
+
+        <label> Context:
+          <select id="context">
+            <option value="travel">Travel</option>
+            <option value="food">Food</option>
+            <option value="fashion">Fashion</option>
+            <option value="nature">Nature</option>
+            <option value="art">Art</option>
+            <option value="technology">Technology</option>
+            <option value="sports">Sports</option>
+            <option value="music">Music</option>
+            <option value="pets">Pets</option>
+          </select>
+        </label>
+
+        <label>
+          <input type="checkbox" id="hashtags" /> Auto-select popular tags
+        </label>
+
+        <button id="generateBtn">✨ Generate Caption</button>
+      </section>
+
+      <!-- Output -->
+      <section class="output">
+        <h2>Output</h2>
+        <div class="preview" id="imagePreview">Preview</div>
+        <div class="caption-box">
+          <p id="generatedCaption">Your caption will appear here after generation.</p>
+          <button id="copyBtn">📋 Copy</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='caption.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pick a Vibe</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <img src="{{ url_for('static', filename='logo.png.jpg') }}" alt="Logo" class="logo" />
+    <h2 class="brand-name">ImageScribe</h2>
+  </header>
+
+  <!-- Main container -->
+  <div class="container">
+    <h1 class="title">Pick a vibe and go ✨</h1>
+    <p class="subtitle">Three paths — same energy. Choose how you want to express it.</p>
+
+    <div class="card-container">
+      <div class="card" data-link="{{ url_for('caption') }}">
+        <h2>📝 Caption</h2>
+        <p>Spicy one-liners for your posts</p>
+      </div>
+
+      <div class="card" data-link="{{ url_for('meme') }}">
+        <h2>🔥 Meme</h2>
+        <p>Instant LOLs for you & friends</p>
+      </div>
+
+      <div class="card" data-link="{{ url_for('story') }}">
+        <h2>📖 Short Story</h2>
+        <p>Tiny tales from a single pic</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='home.js') }}"></script>
+  <script>
+    // Add click listeners to cards for navigation
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {
+        const link = card.getAttribute('data-link');
+        if (link) {
+          window.location.href = link;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

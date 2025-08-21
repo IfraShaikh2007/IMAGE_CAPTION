@@ -1,0 +1,124 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #0A192F; /* deep navy blue */
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 20px;
+  background: #112240; /* slightly lighter navy */
+  border-bottom: 2px solid #1E2D50;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+}
+
+.brand-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #7C3AED;
+}
+
+/* Main container */
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #7C3AED;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #cbd5e1; /* soft gray-blue for readability */
+  margin-bottom: 20px;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1;
+  min-width: 250px;
+  background: #1E293B; /* slate/navy card */
+  padding: 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s, border 0.2s;
+  border: 2px solid transparent;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  background: #334155; /* hover navy */
+}
+
+.card.active {
+  border: 2px solid #F43F5E;
+  background: #2D2D2D;
+}
+
+.card h2 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+
+/* 📱 Responsive */
+@media (max-width: 600px) {
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 350px;
+    heigth:350px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+  
+}

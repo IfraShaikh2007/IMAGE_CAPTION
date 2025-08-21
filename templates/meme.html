@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meme Generator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='meme.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Meme Generator</h1>
+    <nav>
+        <button class="nav-btn" onclick="location.href='{{ url_for('home') }}'">🏠 Home</button>
+        <button class="nav-btn" onclick="location.href='{{ url_for('caption') }}'">📝 Captions</button>
+        <button class="nav-btn" onclick="location.href='{{ url_for('story') }}'">📖 Short Story</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="meme-generator">
+      <div class="left-panel">
+        <h2 id="tagline" style="text-align:center; margin: 15px 0; font-weight: 600;"></h2>
+
+        <label class="upload-label" for="imageInput">
+          Drop a pic here 👇 let’s make it funny<br />
+          <small>(Click to choose)</small>
+        </label>
+        <input type="file" id="imageInput" accept="image/*" />
+
+        <button id="generateBtn">
+          🚀 Generate Meme
+        </button>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="right-panel">
+        <h2>Preview</h2>
+        <div class="preview" id="memePreview">
+          Your meme preview will appear here.
+        </div>
+        <button id="downloadBtn" disabled>Download Meme</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='meme.js') }}"></script>
+</body>
+</html>

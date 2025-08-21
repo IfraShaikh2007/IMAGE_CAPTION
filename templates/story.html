@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Short Story Generator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='story.css') }}">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Story Generator</h1>
+      <nav>
+        <button class="nav-btn" onclick="location.href='{{ url_for('home') }}'">🏠 Home</button>
+        <button class="nav-btn" onclick="location.href='{{ url_for('meme') }}'">🔥 Meme</button>
+        <button class="nav-btn" onclick="location.href='{{ url_for('caption') }}'">📝 Captions</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="upload-section">
+        <p>Turn pics into epic tales 📖✨</p>
+        <div class="upload-box" id="upload-box">
+          <input type="file" id="image-input" accept="image/*" hidden />
+          <div class="image-drop" onclick="document.getElementById('image-input').click()">
+            <p id="upload-text">Upload your image & watch the story unfold 🎬</p>
+            <button type="button" class="choose-btn" onclick="document.getElementById('image-input').click(); event.stopPropagation();">Choose Image</button>
+          </div>
+        </div>
+
+        <button id="remove-btn" class="remove-btn" style="display:none;">Remove Image</button>
+
+        <label for="tone-select" class="tone-label">Select story tone/genre:</label>
+        <select id="tone-select" class="tone-select" disabled>
+          <option value="neutral" selected>Neutral</option>
+          <option value="romantic">Romantic</option>
+          <option value="mystery">Mystery</option>
+          <option value="comedy">Comedy</option>
+          <option value="dramatic">Dramatic</option>
+        </select>
+
+        <button id="generate-btn" class="generate-btn" disabled>Generate story</button>
+      </section>
+
+      <section class="story-section">
+        <h3>Your Story</h3>
+        <div class="story-title">
+          <h4 id="story-title-text">Story Title</h4>
+          <button id="copy-btn">Copy</button>
+        </div>
+        <div class="story-content" id="story-content">
+          Your generated story will appear here based on the uploaded image.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='story.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* BODY BASE */
+body {
+  background: #0e1117; /* deep navy dark */
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+/* HEADER */
+.header {
+  background-color: #121827;
+  padding: 10px 10px; /* smaller padding so logo aligns left */
+  display: flex;
+  justify-content: space-between; /* logo left, nav right */
+  align-items: center;
+  border-bottom: 2px solid #4f46e5;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #a5b4fc;
+  margin-left: 0; /* force left alignment */
+}
+
+/* NAVIGATION MENU */
+.header nav ul {
+  list-style: none;
+  display: flex;
+  gap: -10px; /* tighter spacing between links */
+}
+
+.header nav ul li {
+  display: inline-block;
+}
+
+.header nav ul li a {
+  color: #c7d2fe;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid #6366f1;
+  padding: 6px 6px; /* slightly smaller padding */
+  border-radius: 6px;
+  transition: background 0.25s, color 0.25s;
+}
+
+.header nav ul li a:hover,
+.header nav ul li a.active {
+  background: #4f46e5;
+  color: #fff;
+}
+
+/* MAIN CONTENT */
+.content {
+  max-width: 1200px;
+  margin: -3px auto; /* moved up */
+  padding: 20px;
+}
+
+.content h1 {
+  margin-bottom: 16px;
+  text-align: center;
+  color: #e2e8f0;
+}
+
+/* FLEX CONTAINER FOR INPUTS + OUTPUT */
+.container {
+  display: flex;
+  gap: -1px;
+}
+
+/* INPUTS SECTION (LEFT) */
+.inputs {
+  flex: 1;
+  background: #161b2e;
+  padding: 40px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputs h2 {
+  margin-bottom: 16px;
+  color: #c7d2fe;
+}
+
+.upload-box {
+  border: 2px dashed #374151;
+  border-radius: 12px;
+  padding: 70px;
+  text-align: center;
+  margin-bottom: 16px;
+  cursor: pointer;
+  background: #0e1625;
+  transition: border 0.25s, background 0.25s;
+}
+
+.upload-box:hover {
+  border-color: #6366f1;
+  background: #131b2f;
+}
+
+label {
+  margin: -10px 0; /* reduced vertical spacing */
+  display: block;
+  color: #94a3b8;
+}
+
+select, input[type="checkbox"] {
+  .checkbox-row {
+  display: flex;
+  align-items: left;
+  gap: 6px; /* space between checkbox and label */
+  margin-top: 4px;
+}
+
+.checkbox-row input[type="checkbox"] {
+  margin: 0; /* removes browser default spacing */
+}
+
+}
+
+/* Buttons */
+button {
+  margin-top: 16px; /* tighter */
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #7c3aed; /* purple accent */
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+button:hover {
+  background: #5b21b6;
+}
+
+/* OUTPUT SECTION (RIGHT) */
+.output {
+  flex: 1;
+  background: #161b2e;
+  padding: 40px;
+  border-radius: 12px;
+}
+
+.output h2 {
+  margin-bottom: 16px;
+  color: #c7d2fe;
+}
+
+/* Preview Box */
+.preview {
+  width: 100%;
+  height: 320px; /* increased height for caption area */
+  border: 2px dashed #374151;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0e1625;
+  margin-bottom: 20px;
+  color: #64748b;
+  font-size: 1rem;
+}
+
+/* Caption Box */
+.caption-box {
+  background: #1e293b;
+  border-radius: 15px;
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.caption-box p {
+  margin: 0;
+  color: #e2e8f0;
+  flex: 1;
+}
+
+.caption-box button {
+  margin-left: 10px;
+  padding: 8px 18px;
+  font-size: 0.9rem;
+}
+.inputs {
+  width: 600px; /* or whatever width you want */
+}
+.output {
+  width: 600px; /* or whatever width you want */
+}
+.header {
+  padding: 10px 18px;  /* ↓ smaller top-bottom padding */
+  min-height: unset;  /* ↓ remove if previously set */
+  height: 70px;       /* ↓ set fixed height (optional) */
+}
+
+.header .logo {
+  font-size: 2.2rem;  /* ↓ slightly smaller text if needed */
+}
+
+.header nav ul li a {
+  padding: 8px 12px;  /* ↓ smaller buttons in nav */
+  font-size: 0.90rem;
+}

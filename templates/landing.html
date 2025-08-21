@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ImageScribe - Landing Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-gray-100 font-sans">
+
+  <!-- Navbar -->
+  <header class="bg-gray-900 shadow-md sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center p-4">
+      <div class="flex items-center space-x-3">
+        <img src="/static/logo.png.jpg" alt="ImageScribe Logo" class="w-12 h-12 rounded-full border-2 border-indigo-500" />
+        <h1 class="text-2xl font-bold text-indigo-400">ImageScribe</h1>
+      </div>
+      <nav class="space-x-6 hidden md:flex">
+        <a href="#about" class="hover:text-indigo-400">About</a>
+        <a href="#features" class="hover:text-indigo-400">Features</a>
+        <a href="#showcase" class="hover:text-indigo-400">Showcase</a>
+        <a href="#unique" class="hover:text-indigo-400">Why Unique?</a>
+        <a href="#team" class="hover:text-indigo-400">Built By</a>
+      </nav>
+      <a href="/" class="bg-indigo-500 hover:bg-indigo-600 text-white px-5 py-2 rounded-lg shadow-md">
+        Try Now
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="text-center py-20 bg-gradient-to-b from-gray-900 to-gray-950">
+    <h2 class="text-5xl font-extrabold mb-6">Bring Your Images to Life ✨</h2>
+    <p class="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+      ImageScribe transforms your pictures into <span class="text-indigo-400">captions</span>, 
+      <span class="text-pink-400">memes</span>, and <span class="text-green-400">short stories</span> — all with AI-powered creativity.
+    </p>
+    <a href="/" class="bg-indigo-500 hover:bg-indigo-600 text-white px-8 py-3 rounded-xl text-lg shadow-lg">
+      Get Started
+    </a>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-16 container mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center mb-8">📌 About ImageScribe</h2>
+    <p class="text-gray-300 max-w-3xl mx-auto text-center text-lg">
+      ImageScribe is your all-in-one creative tool. Whether you want to make your Instagram posts shine, 
+      create hilarious memes, or tell short engaging stories from your pictures, 
+      ImageScribe is here to turn imagination into words and fun.
+    </p>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-16 bg-gray-900">
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-12">✨ Features</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        
+        <!-- Captions -->
+        <div class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition">
+          <h3 class="text-2xl font-semibold mb-4 text-indigo-400">📝 Smart Captions</h3>
+          <p class="text-gray-300">
+            Generate context-aware captions in multiple tones with hashtags. 
+            Perfect for social media growth.
+          </p>
+        </div>
+        
+        <!-- Memes -->
+        <div class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition">
+          <h3 class="text-2xl font-semibold mb-4 text-pink-400">😂 Creative Memes</h3>
+          <p class="text-gray-300">
+            Instantly create funny, sarcastic, or trendy memes from your images. 
+            Keep up with the internet’s humor.
+          </p>
+        </div>
+        
+        <!-- Short Stories -->
+        <div class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition">
+          <h3 class="text-2xl font-semibold mb-4 text-green-400">📖 Short Stories</h3>
+          <p class="text-gray-300">
+            Craft engaging and imaginative stories based on your photos. 
+            Ideal for storytellers, writers, and creatives.
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Showcase Section -->
+  <section id="showcase" class="py-16 container mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center mb-12">📸 Showcase</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      <img src="/static/ss1.jpg" alt="App Screenshot 1" class="rounded-xl shadow-lg">
+      <img src="/static/ss2.jpg" alt="App Screenshot 2" class="rounded-xl shadow-lg">
+      <img src="/static/ss3.jpg" alt="App Screenshot 3" class="rounded-xl shadow-lg">
+      <img src="/static/ss4.jpg" alt="App Screenshot 4" class="rounded-xl shadow-lg">
+    </div>
+  </section>
+
+  <!-- Unique Section -->
+  <section id="unique" class="py-16 bg-gray-900">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold mb-8">🌟 What Makes ImageScribe Unique?</h2>
+      <ul class="space-y-4 text-lg text-gray-300">
+        <li>✅ One platform for captions, memes, and short stories.</li>
+        <li>✅ Customizable tones & styles for every mood.</li>
+        <li>✅ AI-powered, fast, and user-friendly.</li>
+        <li>✅ Sleek modern interface with dark theme.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Built By Section -->
+  <section id="team" class="py-16 container mx-auto px-6 text-center">
+    <h2 class="text-4xl font-bold mb-6">👩‍💻 Built By</h2>
+    <p class="text-gray-300 text-lg">Created by <span class="text-indigo-400 font-semibold">Ifra Shaikh & Dhara Shrivastav</span>, Interns at VighnoTech & Students at Thakur Polytechnic, Mumbai</p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 py-6 text-center text-gray-400">
+    <p>© 2025 ImageScribe. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
