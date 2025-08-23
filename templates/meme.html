@@ -8,14 +8,18 @@
 </head>
 <body>
   <header>
-    <h1>Meme Generator</h1>
-    <nav>
-        <button class="nav-btn" onclick="location.href='{{ url_for('home') }}'">🏠 Home</button>
-        <button class="nav-btn" onclick="location.href='{{ url_for('caption') }}'">📝 Captions</button>
-        <button class="nav-btn" onclick="location.href='{{ url_for('story') }}'">📖 Short Story</button>
-    </nav>
-  </header>
-
+  <div class="logo">
+    
+    <h2> 🔥 Meme Generator</h2>
+  </div>
+  <nav>
+    <a href="{{ url_for('home') }}">🏠Home</a>
+    <a href="{{ url_for('caption') }}">📝Caption</a>
+    <a href="{{ url_for('story') }}">📖Short Story</a>
+  </nav>
+</header>
+<!-- 🔹 Blue line -->
+<div class="header-line"></div>
   <main>
     <section class="meme-generator">
       <div class="left-panel">
