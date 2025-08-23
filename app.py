@@ -241,15 +241,16 @@ def generate_meme():
         total_text_height = sum(line_heights) + (15 * (len(lines) - 1))
 
         # --- Create bar either at bottom (default) or top (NEW) ---
-        bar_height = total_text_height + 60
+        padding=80
+        bar_height = total_text_height + padding
         if position == "top":
             new_img = Image.new("RGB", (image.width, image.height + bar_height), "black")
             # paste bar at top by leaving it as background, image below it
             new_img.paste(image, (0, bar_height))
-            y_text = (bar_height - text_height) // 2  # vertically center in bar
+            y_text = (bar_height - total_text_height) // 2  # vertically center in bar
         else:
             # bottom
-            new_img = Image.new("RGB", (image.width, image.height + bar_height), (0,0,0))
+            new_img = Image.new("RGB", (image.width, image.height + bar_height), "black")
             new_img.paste(image, (0, 0))
             y_text = image.height + (bar_height - total_text_height) // 2
 
@@ -261,7 +262,7 @@ def generate_meme():
             x = (new_img.width - line_width) // 2
 
             # Outline for visibility (kept)
-            outline = max(2, font_sizen//15)
+            outline = max(2, font_size//15)
             for ox in range(-outline, outline + 1):
                 for oy in range(-outline, outline + 1):
                     if ox == 0 and oy == 0:
