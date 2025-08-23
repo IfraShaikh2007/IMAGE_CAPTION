@@ -215,7 +215,7 @@ def generate_meme():
         # Prepare font
         try:
             FONT_PATH = os.path.join("static", "fonts", "impact.ttf")
-            font = ImageFont.truetype("arialbd.ttf", size=font_size)
+            font = ImageFont.truetype(FONT_PATH, size=font_size)
         except Exception:
             font = ImageFont.load_default()
 
