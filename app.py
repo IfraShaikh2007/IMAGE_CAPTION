@@ -205,10 +205,10 @@ def generate_meme():
 
         # --- Font size + color handling ---
         try:
-            font_size = int(font_size_raw) if font_size_raw else 50
+            font_size = int(font_size_raw) if font_size_raw else 70  # default bigger for clarity
         except ValueError:
-            font_size = 50
-        font_size = max(24, min(font_size, 96))  # clamp
+            font_size = 70
+        font_size = max(24, min(font_size, 150))  # allow up to 150px
 
         def hex_to_rgb(hx: str):
             hx = hx.lstrip("#")
@@ -248,7 +248,7 @@ def generate_meme():
         total_text_height = sum(line_heights) + (15 * (len(lines) - 1))
 
         # --- Create bar at bottom or top ---
-        padding = 80
+        padding = font_size + 40  # adaptive padding based on font size
         bar_height = total_text_height + padding
         if position == "top":
             new_img = Image.new("RGB", (image.width, image.height + bar_height), "black")
@@ -288,6 +288,7 @@ def generate_meme():
     except Exception as e:
         logging.error(f"Error in /generate-meme endpoint: {e}")
         return str(e), 500
+
 
 if __name__ == "__main__":
     for rule in app.url_map.iter_rules():
