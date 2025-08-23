@@ -237,11 +237,11 @@ def generate_meme():
             lines.append(current_line)
 
         # Calculate text height
-        line_heights = [draw.textbbox((0, 0), line, font=font)[3] for line in lines]
-        text_height = sum(line_heights) + 15 * (len(lines) - 1)
+        line_heights = [draw.textbbox((0, 0), line, font=font)[3] - draw.textbbox((0,0), line font=font)[1] for line in lines]
+        total_text_height = sum(line_heights) + (15 * (len(lines) - 1))
 
         # --- Create bar either at bottom (default) or top (NEW) ---
-        bar_height = text_height + 40
+        bar_height = total_text_height + 60
         if position == "top":
             new_img = Image.new("RGB", (image.width, image.height + bar_height), "black")
             # paste bar at top by leaving it as background, image below it
@@ -249,26 +249,28 @@ def generate_meme():
             y_text = (bar_height - text_height) // 2  # vertically center in bar
         else:
             # bottom
-            new_img = Image.new("RGB", (image.width, image.height + bar_height), "black")
+            new_img = Image.new("RGB", (image.width, image.height + bar_height), (0,0,0))
             new_img.paste(image, (0, 0))
-            y_text = image.height + (bar_height - text_height) // 2
+            y_text = image.height + (bar_height - total_text_height) // 2
 
         # Draw text centered inside the black bar
         new_draw = ImageDraw.Draw(new_img)
-        for line in lines:
+        for line, h in zip(lines, line_heights):
             bbox = new_draw.textbbox((0, 0), line, font=font)
             line_width = bbox[2] - bbox[0]
             x = (new_img.width - line_width) // 2
 
             # Outline for visibility (kept)
-            outline = 3
+            outline = max(2, font_sizen//15)
             for ox in range(-outline, outline + 1):
                 for oy in range(-outline, outline + 1):
+                    if ox == 0 and oy == 0:
+                        continue
                     new_draw.text((x + ox, y_text + oy), line, font=font, fill="black")
 
             # Main text with chosen color (NEW)
-            new_draw.text((x, y_text), line, font=font, fill=text_color)
-            y_text += bbox[3] - bbox[1] + 15
+            new_draw.text((x, y_text), line, font=font, fill=(255, 255, 255) 
+            y_text += h + 15  # line height + spacing
 
         # Save & return
         output = io.BytesIO()
