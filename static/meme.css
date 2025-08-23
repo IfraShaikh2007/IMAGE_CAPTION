@@ -286,7 +286,7 @@ button#downloadBtn:disabled {
 
   .preview {
     min-height: 200px; /* give space for memes */
-    font-size: 14px;
+    font-size: 20px;
   }
 }
 
@@ -305,6 +305,6 @@ button#downloadBtn:disabled {
 
   .preview {
     min-height: 180px;
-    font-size: 14px;
+    font-size: 20px;
   }
 }
