@@ -131,19 +131,30 @@ def analyze_image():
         return jsonify({"error": str(e)}), 500
 
 # ---------- MEME GENERATOR ----------
+
+        new_img.save(output, format="PNG")
+        output.seek(0)
+        return send_file(output, mimetype="image/png")
+
+    except Exception as e:
+        logging.error("Error in /generate-meme endpoint", exc_info=True)
+        return str(e), 500
+
 @app.route("/generate-meme", methods=["POST"])
 def generate_meme():
     try:
         logging.debug("Received /generate-meme request")
+
+        # Get image
         image_file = request.files.get("image")
         if not image_file:
             return "No image provided.", 400
 
-        # NEW: optional controls
-        tone = request.form.get("tone", "").strip().lower()  # "random" or one of: funny/sarcastic/relatable/dark/wholesome/absurdist/motivational
+        # Optional controls
+        tone = request.form.get("tone", "").strip().lower()
         font_size_raw = request.form.get("font_size", "").strip()
         font_color_hex = request.form.get("font_color", "#FFFFFF").strip()
-        position = request.form.get("position", "bottom").strip().lower()  # "bottom" (default) or "top"
+        position = request.form.get("position", "bottom").strip().lower()
 
         # Load image
         image_bytes = image_file.read()
@@ -153,7 +164,7 @@ def generate_meme():
         # Prepare base64 for Gemini
         base64_image = base64.b64encode(image_bytes).decode("utf-8")
 
-        # Style selection (keeps your original random if no tone provided)
+        # Tone/Style selection
         styles = [
             "Make it sarcastic.",
             "Make it relatable.",
@@ -171,10 +182,7 @@ def generate_meme():
             "absurdist": "Make it absurdist.",
             "motivational": "Make it motivational."
         }
-        if tone and tone != "random" and tone in tone_map:
-            style = tone_map[tone]
-        else:
-            style = random.choice(styles)
+        style = tone_map.get(tone) if tone and tone != "random" and tone in tone_map else random.choice(styles)
 
         prompt = (
             f"You are a professional meme creator. Generate ONE single funniest meme caption "
@@ -195,7 +203,7 @@ def generate_meme():
         if not meme_text:
             return "No meme text generated.", 500
 
-        # --- NEW: font size + color handling ---
+        # --- Font size + color handling ---
         try:
             font_size = int(font_size_raw) if font_size_raw else 50
         except ValueError:
@@ -219,12 +227,11 @@ def generate_meme():
         except Exception:
             font = ImageFont.load_default()
 
-        # --- Proper text wrapping (unchanged logic) ---
+        # --- Text wrapping ---
         draw = ImageDraw.Draw(image)
-        max_text_width = image.width - 40  # padding
+        max_text_width = image.width - 40
         words = meme_text.split()
         lines, current_line = [], ""
-
         for word in words:
             test_line = current_line + " " + word if current_line else word
             bbox = draw.textbbox((0, 0), test_line, font=font)
@@ -237,52 +244,51 @@ def generate_meme():
             lines.append(current_line)
 
         # Calculate text height
-        line_heights = [draw.textbbox((0, 0), line, font=font)[3] - draw.textbbox((0,0), line font=font)[1] for line in lines]
+        line_heights = [draw.textbbox((0, 0), line, font=font)[3] - draw.textbbox((0,0), line ,font=font)[1] for line in lines]
         total_text_height = sum(line_heights) + (15 * (len(lines) - 1))
 
-        # --- Create bar either at bottom (default) or top (NEW) ---
-        padding=80
+        # --- Create bar at bottom or top ---
+        padding = 80
         bar_height = total_text_height + padding
         if position == "top":
             new_img = Image.new("RGB", (image.width, image.height + bar_height), "black")
-            # paste bar at top by leaving it as background, image below it
             new_img.paste(image, (0, bar_height))
-            y_text = (bar_height - total_text_height) // 2  # vertically center in bar
-        else:
-            # bottom
+            y_text = (bar_height - total_text_height) // 2
+        else:  # bottom
             new_img = Image.new("RGB", (image.width, image.height + bar_height), "black")
             new_img.paste(image, (0, 0))
             y_text = image.height + (bar_height - total_text_height) // 2
 
-        # Draw text centered inside the black bar
+        # --- Draw text with outline ---
         new_draw = ImageDraw.Draw(new_img)
+        outline_color = (0, 0, 0)
         for line, h in zip(lines, line_heights):
             bbox = new_draw.textbbox((0, 0), line, font=font)
             line_width = bbox[2] - bbox[0]
             x = (new_img.width - line_width) // 2
 
-            # Outline for visibility (kept)
-            outline = max(2, font_size//15)
+            # Draw outline
+            outline = max(3, font_size // 12)
             for ox in range(-outline, outline + 1):
                 for oy in range(-outline, outline + 1):
                     if ox == 0 and oy == 0:
                         continue
-                    new_draw.text((x + ox, y_text + oy), line, font=font, fill="black")
+                    new_draw.text((x + ox, y_text + oy), line, font=font, fill=outline_color)
 
-            # Main text with chosen color (NEW)
-            new_draw.text((x, y_text), line, font=font, fill=(255, 255, 255) 
-            y_text += h + 15  # line height + spacing
+            # Draw main text
+            new_draw.text((x, y_text), line, font=font, fill=text_color)
+            y_text += h + 15
 
         # Save & return
         output = io.BytesIO()
-        new_img.save(output, format="PNG")
+        new_img.save(output, format="JPEG")
         output.seek(0)
-        return send_file(output, mimetype="image/png")
+        return send_file(output, mimetype="image/jpeg")
 
     except Exception as e:
-        logging.error("Error in /generate-meme endpoint", exc_info=True)
+        logging.error(f"Error in /generate-meme endpoint: {e}")
         return str(e), 500
-# ---------- MAIN ----------
+
 if __name__ == "__main__":
     for rule in app.url_map.iter_rules():
         logging.info(f"Route: {rule} -> {rule.endpoint}")
