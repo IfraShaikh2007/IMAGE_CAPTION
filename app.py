@@ -90,7 +90,7 @@ def analyze_image():
         }
 
         # Call Gemini model
-        model = genai.GenerativeModel("gemini-1.5-flash")
+        model = genai.GenerativeModel("gemini-2.5-flash")
         response = model.generate_content([image_part, prompt])
 
         app.logger.debug(f"Gemini Raw Response: {response}")
@@ -197,7 +197,7 @@ def generate_meme():
             }
         }
 
-        model = genai.GenerativeModel("gemini-1.5-flash")
+        model = genai.GenerativeModel("gemini-2.5-flash")
         response = model.generate_content([image_part, prompt])
         meme_text = getattr(response, "text", "").strip().upper()
         if not meme_text:
